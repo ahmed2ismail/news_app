@@ -14,8 +14,7 @@ class NewsListViewBuilder extends StatefulWidget {
 
 class _NewsListViewBuilderState extends State<NewsListViewBuilder> {
   // List<ArticleModel> articles = [];
-  // ignore: prefer_typing_uninitialized_variables
-  var future;
+  late Future<List<ArticleModel>> future;
   @override
   void initState() {
     future = NewsService(Dio()).getTopHeadLines(category: widget.category);
@@ -53,7 +52,7 @@ class _NewsListViewBuilderState extends State<NewsListViewBuilder> {
               height: MediaQuery.of(
                 context,
               ).size.height, // عشان ياخد ارتفاع الشاشة كلها
-              child: Column(
+              child: const Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisSize: MainAxisSize.min,

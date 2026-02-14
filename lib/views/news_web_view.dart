@@ -53,7 +53,7 @@ class _NewsWebViewState extends State<NewsWebView> {
       // 💻 ويندوز
       await _windowsController.initialize();
       await _windowsController.loadUrl(widget.url);
-      setState(() => isLoading = false);
+      if (mounted) setState(() => isLoading = false);
     }
   }
 
@@ -70,14 +70,14 @@ class _NewsWebViewState extends State<NewsWebView> {
       try {
         await _windowsController.goBack();
       } catch (e) {
-        Navigator.pop(context);
+        if (mounted) Navigator.pop(context);
       }
     } else if (_mobileController != null) {
       final canGoBack = await _mobileController!.canGoBack();
       if (canGoBack) {
         await _mobileController!.goBack();
       } else {
-        Navigator.pop(context);
+        if (mounted) Navigator.pop(context);
       }
     }
   }
@@ -128,13 +128,10 @@ class _NewsWebViewState extends State<NewsWebView> {
               child: Platform.isWindows
                   ? Webview(_windowsController)
                   : _mobileController != null
-                      ? WebViewWidget(controller: _mobileController!)
-                      : const Center(child: Text("Loading...")),
+                  ? WebViewWidget(controller: _mobileController!)
+                  : const Center(child: Text("Loading...")),
             ),
-            if (isLoading)
-              const Center(
-                child: CircularProgressIndicator(),
-              ),
+            if (isLoading) const Center(child: CircularProgressIndicator()),
           ],
         ),
       ),

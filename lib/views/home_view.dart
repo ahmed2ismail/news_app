@@ -36,9 +36,9 @@ class HomeView extends StatelessWidget {
       body:
           // عندنا كذا طريقة نعمل بيها سكرول للصفحة كاملة
           // الطريقة الاولى عن طريق CustomScrollView
-          CustomScrollView(
-            // فقط NewsListView دي ليست بتعمل سكرول للصفحة بحالحا وليس لل
-            physics: const BouncingScrollPhysics(),
+          const CustomScrollView(
+            // فقط NewsListView دي ليست بتعمل سكرول للصفحة بحالها وليس لل
+            physics: BouncingScrollPhysics(),
             slivers: [
               SliverToBoxAdapter(child: CategoriesListView()),
               SliverToBoxAdapter(child: SizedBox(height: 16)),

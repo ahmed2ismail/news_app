@@ -13,7 +13,7 @@ class CategoryCard extends StatelessWidget {
         Navigator.push(context, MaterialPageRoute(builder: (context)=> CategoryView(category: category.categoryName,)));
       },
       child: Padding(
-        padding: EdgeInsets.only(right: 16),
+        padding: const EdgeInsets.only(right: 16),
         child: Container(
           width: 160,
           height: 95,
